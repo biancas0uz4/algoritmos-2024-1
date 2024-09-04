@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="contar()">Contar de 0 até 10</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function contar() {
+        div_mensagem.innerHTML = ""; // limpa a div
+        
+        for (var contador = 0; contador <=10; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`            
+        }
+    }
+    
+    /*
+        o comando "for" representa uma estrutura de repetição;
+
+        a estrutura de repetição "for" é composta por 3 partes: 
+        - um comando que será executado antes de entrar na estrutura de repetição (normalmente usado para definir/iniciar o contador);
+        - a condição de repetição, que será testada a cada repetição do loop, para ver se deve executar o bloco de código ou não;
+        - um comando que será executado na última linha virtual do seu for, ou seja, antes de realizar o próximo teste da condição para repetir o loop (normalmente usado para atualizar o contador);
+        
+        for ( comando antes de iniciar o loop;  condição de repetição;  comando na última linha virtual do for ) { ... }
+
+        exemplo de execução para contar de 1 até 15: 
+
+            for (var cont = 1; cont <= 15; cont++) { 
+                div_mensagem.innerHTML += `Contando... ${cont} <br>`;
+            }   
+
+        acima, estamos contando de 1 até 15, então, enquanto o contador for menor ou igual a 15, repete a mensagem com o contador atualizado;
+
+        para a condição, também podemos utilizar operadores lógicos quando necessário, assim como nas estruturas de decisão;
+    */
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="numeros()">Números cabalísticos</button>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function numeros() {
+        for (var contador = 1; contador < 3; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`
+        }
+        for (var contador = 4; contador < 7; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`
+        }
+        for (var contador = 8; contador < 10; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`
+        }
+        for (var contador = 11; contador <= 11; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`
+        }
+        for (var contador = 13; contador <= 30; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`
+        }
+        
+    }
+</script>

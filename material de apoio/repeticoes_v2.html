@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="contar()">Contar até 10 (se puder)</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function contar() {
+        div_mensagem.innerHTML = ""; // limpa a div
+    
+        var pode_contar = true;
+        
+        // executa o for somente se a condição for verdadeira
+        if (pode_contar) {
+            
+            // conta de 1 até 10, repetidamente
+            for (var contador = 1; contador <= 10;  contador++) {
+                div_mensagem.innerHTML += `${contador} <br>`;
+            }
+
+        } else {   // esse ELSE nunca será executado, pois forçamos a variável "pode_contar" como true
+            alert("Infelizmente, não foi possível contar!");
+        }
+    }
+</script>

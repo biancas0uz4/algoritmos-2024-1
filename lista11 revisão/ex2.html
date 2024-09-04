@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Destino de viagem: <input type="text" id="input_destino">
+    <button onclick="adc()">Adicionar</button>
+    <br>
+    <button onclick="primeira()">Primeira Viagem</button>
+    <button onclick="terceira()">Terceira Viagem</button>
+    <button onclick="ultima()">Ultima Viagem</button>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista_viagem = [];
+
+    function adc() {
+        var destino = input_destino.value;
+
+        lista_viagem.push(destino);
+    }
+
+    function primeira() {
+        div_mensagem.innerHTML = '';
+        var destino = input_destino.value;
+
+        if(lista_viagem.indexOf(destino) >= 0){
+            div_mensagem.innerHTML += `${lista_viagem[0]}`;
+        }else{
+            div_mensagem.innerHTML += `Ainda não viajou`;
+        }
+    }
+
+    function terceira(){
+        div_mensagem.innerHTML = '';
+        var destino = input_destino.value;
+
+        if(lista_viagem.indexOf(destino) >= 0){
+            div_mensagem.innerHTML += `${lista_viagem[2]}`;
+        }else{
+            div_mensagem.innerHTML += `Ainda não fez a terceira viagem`;
+        }
+    }
+
+    function ultima(){
+        div_mensagem.innerHTML = '';
+        var destino = input_destino.value;
+
+        if(lista_viagem.indexOf(destino) >= 0){
+            div_mensagem.innerHTML += `${lista_viagem[lista_viagem.length - 1]}`;
+        }else{
+            div_mensagem.innerHTML += `Ainda não viajou`;
+        }
+    }
+</script>

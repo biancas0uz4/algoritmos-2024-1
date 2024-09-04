@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Projetos que já criou: <input type="text" id="input_projetos">
+    <button onclick="registrar()">Registrar Projeto</button>
+    <button onclick="mostrar()">Mostrar Projetos </button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    lista_projeto = [];
+
+    function registrar() {
+        div_mensagem.innerHTML = '';
+        var projeto = input_projetos.value;
+
+        lista_projeto.push(projeto);
+        var index = lista_projeto.length;
+
+        if (index > 0 && index <= 4) {
+            div_mensagem.innerHTML += `  Você já fez ${index} projetos. Por isso você é um profissional júnior <br> `
+
+        }
+        else if (index > 4 && index <= 12) {
+            div_mensagem.innerHTML += `  Você já fez ${index} projetos. Por isso você é um profissional pleno <br>`
+
+        }
+        else {
+            div_mensagem.innerHTML += `  Você já fez ${index} projetos. Por isso você é um profissional sênior <br> `
+
+        }
+
+    }
+
+    function mostrar() {
+
+        for (var index = lista_projeto.length - 1; index >= 0; index--) {
+            div_mensagem.innerHTML += `${lista_projeto[index]}<br>`;
+
+        }
+    }
+
+</script>

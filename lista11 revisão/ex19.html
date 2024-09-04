@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Filmes assistidos: <input type="text" id="input_filme">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="listar()">Listar Filmes</button>
+    De: <input type="text" id="input_de">
+    Até: <input type="text" id="input_ate">
+    <button onclick="filtrar()">Filtrar Filmes</button>
+    <div id="msg"></div>
+
+</body>
+</html>
+
+<script>
+    var lista_filme = [];
+
+    function cadastrar(){
+        var filme = input_filme.value;
+
+        lista_filme.push(filme);
+
+        msg.innerHTML = '';
+        msg.innerHTML += `Você já assistiu ${lista_filme.length} filmes`
+    }
+
+    function listar(){
+        msg.innerHTML = '';
+        var filme = input_filme.value;
+
+        for (var index = lista_filme.length - 1; index >= 0.; index--) {
+            var filmeAtual = lista_filme[index];
+            
+            msg.innerHTML += `${filmeAtual}<br>`
+        }
+    }
+
+    function filtrar(){
+        msg.innerHTML = '';
+        var filme = input_filme.value;
+        var de = Number(input_de.value);
+        var ate = Number(input_ate.value);
+
+
+        for (var index = ate - 1; index >= de - 1 ; index--) {
+            var filmeAtual = lista_filme[index];
+            
+            msg.innerHTML += `Filme ${index + 1}: ${filmeAtual}<br>`
+
+        }
+    }
+</script>
+

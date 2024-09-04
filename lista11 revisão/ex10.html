@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Linhas de ônibus: <input type="text" id="input_linhas">
+    <button onclick="gravar()">Gravar busão</button>
+    <br>
+    Pesquisar linha: <input type="text" id="input_pesquisar">
+    <button onclick="pesquisar()">Pesquisar</button>
+    <div id="msg"></div>
+</body>
+</html>
+
+<script>
+   var lista_linha = [];
+   
+   function gravar(){
+        msg.innerHTML = '';
+        var linha = input_linhas.value;
+        
+        lista_linha.push(linha);
+
+        for(i = lista_linha.length - 1; i >= 0; i --){
+            msg.innerHTML += `${lista_linha[i]}<br>`
+        }
+   }
+
+   function pesquisar(){
+        msg.innerHTML = '';
+        var pesquisar = input_pesquisar.value;
+        var linha = input_linhas.value;
+
+        var indicePesquisa = lista_linha.indexOf(pesquisa);
+
+        if (indicePesquisa == -1) {
+            div_mensagem.innerHTML = "Você nunca pegou essa linha!"
+        } else {
+            var lista_indices_encontrados = [];
+
+            for (var index = 0; index < lista_linha.length; index++) {
+                var linha_atual = lista_linha[index];
+
+                if (linha_atual == pesquisa) {
+                    lista_indices_encontrados.push( index + 1 );
+                }
+            }
+            div_mensagem.innerHTML = `Você já pegou essa linha ${lista_indices_encontrados.length} vezes, nessa ordem: ${lista_indices_encontrados}`
+        }
+   }
+</script>

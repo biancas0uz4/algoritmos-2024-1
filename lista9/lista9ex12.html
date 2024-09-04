@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ Taboada: <select name="Tabuada" id="input_tabuada">
+    <option selected>Selecione...</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+
+    Até que número a tabuada deve ser construida: <input type="text" id="input_limite">
+
+    <button onclick="calcular()">Ver Tabuada</button>
+
+    <div id="div_mensagem"></div>
+
+ </select>
+</body>
+</html>
+
+<script>
+    function calcular(){
+       
+        div_mensagem.innerHTML = "";
+
+        var tabuada = Number(input_tabuada.value);
+        var limite = Number(input_limite.value);
+        
+        for(var contador = 1; contador <= limite; contador ++){
+            var resultado = contador * tabuada
+          
+
+           div_mensagem.innerHTML += `${tabuada} x ${contador} = ${resultado} <br> `
+            
+        }
+    }
+
+</script>

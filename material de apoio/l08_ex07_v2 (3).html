@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Login: <input type="text" id="input_login"> <br>
+    Senha: <input type="password" id="input_senha"> <br>
+    Código: <input type="text" id="input_codigo"> <br>
+    <button onclick="autenticar()">Autenticar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    // var tentativas = 0;
+    var tentativas = 3;
+
+    function autenticar() {
+        var login = input_login.value;
+        var senha = input_senha.value;
+        var codigo = input_codigo.value;
+
+        tentativas--; // reduz a tentativa
+
+        // caso o login esteja correto, mesmo que seja a última tentativa, autentica e reseta as tentativas
+        if (tentativas >= 0 && login == "ana" && senha == "braga" && (codigo == "1949" || codigo == "louro josé")) {
+            div_mensagem.innerHTML = "Usuário autenticado";
+            tentativas = 3; 
+        } else if (tentativas > 0) {   // caso não esteja autenticado e ainda tenha tentativas, exibe as tentativas restantes
+            div_mensagem.innerHTML = `Falha na autenticação! Você ainda tem ${tentativas} tentativa(s)`;
+        } else {   // caso não esteja autenticado e não tenha tentativas restantes, bloqueia o usuário
+            div_mensagem.innerHTML = `Falha na autenticação! Sem tentativas restantes! Usuário bloqueado`;
+        }
+    }
+</script>

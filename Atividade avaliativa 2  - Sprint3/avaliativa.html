@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliativa</title>
+</head>
+
+<body>
+    <h1>Hamburg & Ria</h1>
+
+    Nome: <input type="text" id="input_nome">
+    <br>
+    Peso (em gramas): <input type="text" id="input_kg">
+    <br>
+    Preço (por kg): <input type="text" id="input_preco">
+    <br>
+    <button onclick="adc()">Adicionar Ingrediente no Blend</button>
+    <br>
+    Nome da criação: <input type="text" id="input_criacao">
+    <br>
+    <button onclick="preparar()">Preparar Blend e Registrar</button>
+    <div id="msg"></div>
+</body>
+
+</html>
+
+<script>
+    var lista_ingredientes = [];
+
+    function adc() {
+        msg.innerHTML = '';
+        var nome = input_nome.value;
+        var peso = Number(input_kg.value);
+        var preco = Number(input_preco.value);
+
+        lista_ingredientes.push(nome);
+
+        if (nome == '' || peso == '' || preco == '') {
+            msg.innerHTML += `Por favor preencha todos os campos para prosseguir<br>`
+        } else {
+            msg.innerHTML += `Ingredientes adicionados com sucesso!`
+        }
+    }
+    function preparar() {
+        msg.innerHTML = '';
+        var nome = input_nome.value;
+        var peso = Number(input_kg.value);
+        var preco = Number(input_preco.value);
+        var criacao = input_criacao.value;
+        
+        lista_ingredientes.push(nome);
+        
+        if (lista_ingredientes.length < 2 || criacao == '') {
+            msg.innerHTML += `Por favor preencha todos os campos para prosseguir ou confira se colocou 2 ou mais ingredientes`
+        } else {
+
+            msg.innerHTML += `PREPARANDO NOVO HAMBURGUER
+            <br>`
+            for (var i = 0; i < lista_ingredientes.length; i++) {
+                var ingrediente = lista_ingredientes[i];
+                var precoFinal = (peso / 1000) * preco;
+
+                msg.innerHTML += `  ${i + 1} – Ingrediente: ${ingrediente} – Peso: ${peso} - Preço KG:${preco} - Preço Final: ${precoFinal}<br>`
+
+            }
+        }
+    }
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Qual time você torce: <select name="time" id="input_time">
+        <option selected>Selecione um time</option>
+        <option>Corinthians</option>
+        <option>São Paulo</option>
+        <option>Palmeiras</option>
+        <option>Santos</option>
+    </select>
+    <button onclick="time()">Fale sobre esse time</button>
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    function time() {
+        div_mensagem.innerHTML = '';
+        var time = input_time.value;
+
+        if (time == "Corinthians") {
+            div_mensagem.innerHTML += `<div style="background-color: black; color: white;"> Salve o Corinthians </div>`
+        } else if (time == "Palmeiras") {
+            div_mensagem.innerHTML += `<div style="background-color: green; color: white;"> Salve o alviverde imponente </div>`
+        } else if (time == "Santos") {
+            div_mensagem.innerHTML += `<div style="background-color: white; color: black;">  Agora quem dá a bola é o Santos</div>`
+        } else if (time == "São Paulo") {
+            div_mensagem.innerHTML += `<div style="background-color: black; color: red;">  Salve o Tricolor paulista</div>`
+        }
+    }
+</script>

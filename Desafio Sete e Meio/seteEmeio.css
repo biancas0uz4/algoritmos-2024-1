@@ -1,0 +1,120 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body {
+    background: url(./jogos-de-cassino.webp);
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #2b4e0a;
+}
+
+.circulo {
+    padding: 2%;
+    background: url(./png-clipart-casino-roulette-casino-roulette.png);
+    background-size: 43rem;
+    background-position: 50%;
+    background-color: #414540;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    height: fit-content;
+    height: 28rem;
+    width: 29.3%;
+    border-radius: 100%;
+    border: 3px solid #fffca8;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    flex-direction: column;
+    z-index: 1;
+}
+
+
+button {
+    width: 120px;
+    height: 40px;
+    margin: 5px;
+    background-color: #2b4e0a;
+    color: #FFF;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+
+.card-img-pessoa {
+    height: 99vh;
+    width: 30%;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.cardImgPessoa {
+    height: 99vh;
+    width: 30%;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.cardImgPessoa img {
+    height: 120%;
+    right: -5%;
+    position: fixed;
+}
+
+.card-img-pessoa img {
+    height: 150%;
+    left: -27.5%;
+    top: -19%;
+    position: fixed;
+}
+
+#div_mensagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    background-color: #c2c2c2;
+    border: 2px solid black;
+    width: 50%;
+    height: 90%;
+    border-radius: 7px;
+
+}
+
+.fraseInner {
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.divResultado {
+    color:  #fff;
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    background-color: #541a1a;
+    border-radius: 4px 4px 0 0;
+    margin: 0;
+    height: 55px;
+}

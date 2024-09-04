@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">Exibir</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    // var lista_booleans = [true, false]; // boolean
+    var lista_booleans = ["true", "faxlse"]; // texto
+
+    function exibir() {
+        var aleatorio = Math.random() > 0.5;
+
+        if (typeof aleatorio == "boolean"){
+            lista_booleans.push(aleatorio);
+        }
+
+        div_mensagem.innerHTML = lista_booleans;
+
+        console.log(lista_booleans);
+    }
+</script>

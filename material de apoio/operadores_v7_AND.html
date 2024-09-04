@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     Temperatura: <input type="text" id="input_temperatura">
+     <button onclick="analisar()">Analisar</button>
+
+</body>
+</html>
+
+<script>
+    function analisar() {
+        var temperatura = Number(input_temperatura.value);
+        var mensagem = "Temperatura Desconfortável";
+
+        if (temperatura >= 21 && temperatura <= 24) {
+            mensagem = "Temperatura Confortável";
+        }
+        
+        alert(mensagem);
+    }
+    
+</script>
+<!-- 
+    Receba uma temperatura
+    Ao clicar em "Analisar", faça: 
+    - Caso a temperatura esteja entre 21 e 24, exiba: "A temperatura está confortável";
+    - Caso a temperatura esteja fora deste intervalo, exiba "A temperatura está desconfortável";
+-->

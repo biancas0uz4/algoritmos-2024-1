@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Modo de pagamento: <select name="pagamento" id="ipt_pag">
+        <option selected>Selecione ..</option>
+        <option>Dinheiro</option>
+        <option>Cartão de débito</option>
+        <option>Cartão de crédito</option>
+        <option>Boleto</option>
+    </select>
+
+    <button onclick="analisar()">Analisar compra</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function analisar(){
+        div_mensagem.innerHTML = '';
+        var pag = ipt_pag.value;
+
+        if(pag == 'Dinheiro' || pag == 'Cartão de débito'){
+            div_mensagem.innerHTML += `Você terá que pagar a vista`
+        }else if(pag == 'Cartão de crédito' || pag == 'Boleto'){
+            div_mensagem.innerHTML += `Pagamento poderá ser parcelado`
+        }
+    }
+</script>

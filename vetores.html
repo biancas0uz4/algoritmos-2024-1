@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Fruta: <input type="text" id="input_fruta">
+    <br>
+    <button onclick="adicionar()">Adicionar</button>
+    <div id="div_mensagem"></div>
+    <button onclick="pesquisar()">Pesquisar</button>
+</body>
+
+</html>
+
+<script>
+    var lista_frutas = [];
+
+    function adicionar() {
+        var fruta = input_fruta.value;
+
+        if (lista_frutas.indexOf(fruta) < 0) {
+            lista_frutas.push(fruta);
+
+        } else {
+            alert("Não pode cadastrar uma fruta repetida")
+        }
+
+        div_mensagem.innerHTML += `${lista_frutas} <br>`;
+    }
+
+    function pesquisar() {
+        var fruta = input_fruta.value;
+
+        if (lista_frutas.indexOf(fruta) >= 0) {
+            alert(`A fruta ${fruta} existe na lista!`)
+
+        } else {
+            alert(`A fruta ${fruta} NÃO existe na lista!`)
+        }
+
+        }
+    
+</script>

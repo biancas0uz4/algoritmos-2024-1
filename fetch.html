@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    function buscar(){
+        fetch('https://viacep.com.br/ws/0/json')
+        .then(function (respostaServidor){
+            console.log(respostaServidor)
+
+            respostaServidor.json()
+            .then(function(respostaFormatada){
+                console.log(respostaFormatada)
+            })
+        })
+        .catch(function(erro){
+            console.log(erro)
+        })
+    }
+</script>

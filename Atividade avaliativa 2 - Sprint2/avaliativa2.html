@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliativa 2</title>
+</head>
+
+<body>
+    <h1>Episódios Assistidos</h1>
+
+    Episódio: <input type="number" id="input_ep">
+    <br>
+    <br>
+    Tempo disponivel: <input type="number" id="input_tempo">
+    <br>
+    <br>
+    Horas ou Minutos: <select name="medida" id="input_medida">
+        <option value="1">Horas</option>
+        <option value="2">Minutos</option>
+
+    </select>
+    <br>
+    <br>
+    Deseja pular abertura: <select name="pular" id="input_pularA">
+        <option value="1P">Sim</option>
+        <option value="2P">Não</option>
+    </select>
+    Deseja pular encerramento: <select name="pular" id="input_pularE">
+        <option value="1E">Sim</option>
+        <option value="2E">Não</option>
+    </select>
+    <br><br>
+    <button onclick="assistir()">Assistir Episódios</button>
+    <div id="div_mensagem"></div>
+
+
+</body>
+
+</html>
+
+<script>
+    function assistir() {
+        var ep = Number(input_ep.value);
+        var tempo = Number(input_tempo.value);
+        var medida = input_medida.value;
+        var abertura = input_pularA.value;
+        var encerramento = input_pularE.value;
+        var tamanho = 24;
+        var contador = 1;
+        div_mensagem.innerHTML = ``;
+
+
+        if (abertura == '1P') {
+            tamanho = tamanho - 2
+        }
+        if (encerramento == '1E') {
+            tamanho = tamanho - 2
+        }
+        var tamanhoEpisodio = tamanho;
+        if (medida == '1') {
+            tempo *= 60
+        }
+        var assistindo = 1100 - ep;
+        var minutosAssistidos = 0;
+        if (ep > 1100 || ep <= 0) {
+            alert('O número do episódio é inválido')
+        } else {
+
+            for (var cont = 0; cont <= assistindo; cont++) {
+                div_mensagem.innerHTML += `<br> Episódio: ${ep} <br>`
+
+                for (contador = 1; contador <= tamanho; contador++) {
+                    if (tempo == 0) {
+                        assistindo = 0;
+                        tamanho = 0;
+                    } else {
+                        if (abertura == '2P' && (contador == 1 || contador == 2)) {
+                            div_mensagem.innerHTML += `Minuto ${contador}: Assistindo abertura <br>`
+                            tempo = tempo - 1;
+                            minutosAssistidos++;
+                        } else if (encerramento == '2E' && abertura == '2P' && (contador == 23 || contador == 24)) {
+                            div_mensagem.innerHTML += `Minuto ${contador}: Assistindo encerramento <br>`
+                            tempo = tempo - 1;
+                            minutosAssistidos++;
+                        } else if (encerramento == '2E' && abertura == '1P' && (contador == 21 || contador == 22)) {
+                            div_mensagem.innerHTML += `Minuto ${contador}: Assistindo encerramento <br>`
+                            tempo = tempo - 1;
+                            minutosAssistidos++;
+                        }
+                        else {
+                            div_mensagem.innerHTML += `Minuto ${contador}: Assistindo episódio <br>`
+                            tempo = tempo - 1;
+                            minutosAssistidos++;
+                        }
+                    }
+                }
+                ep++;
+            }
+            var episodiosAssistidos = minutosAssistidos / tamanhoEpisodio;
+            div_mensagem.innerHTML += `<br> Fim dos episídos! <br> Foram assistidos: ${episodiosAssistidos} episòdios`
+        }
+    }
+
+
+</script>

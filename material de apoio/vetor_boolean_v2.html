@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">Exibir</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    // var lista_booleans = [true, false]; // boolean
+    var lista_booleans = ["true", "false"]; // texto
+
+    function exibir() {
+        var booleana = Math.random() > 0.5;
+
+        lista_booleans.push( booleana, " espaço ", 123 );
+
+        div_mensagem.innerHTML = lista_booleans;
+
+        var tamanho_lista = lista_booleans.length;
+
+        for (  var index = 0; index < tamanho_lista; index++ ) {
+            var elemento_atual = lista_booleans[ index ];
+            div_mensagem.innerHTML += `${elemento_atual} - ${ typeof elemento_atual } <br>`;
+        }
+
+        console.log(lista_booleans);
+    }
+</script>

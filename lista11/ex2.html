@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Destino de viagem: <input type="text" id="input_destino">
+    <br>
+    <button onclick="adicionar()">Adicionar</button>
+    <br>
+    <button onclick="primeira()">Primeira Viagem</button>
+    <br>
+    <button onclick="terceira()">Terceira Viagem</button>
+    <br>
+    <button onclick="ultima()">Ultima Viagem</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista_viagem = [];
+
+    function adicionar() {
+        var destino = input_destino.value;
+
+        if (lista_viagem.indexOf(destino) < 0) {
+            lista_viagem.push(destino);
+
+        }
+        div_mensagem.innerHTML += `${lista_viagem} <br>`;
+    }
+
+    function primeira() {
+        var destino = input_destino.value;
+
+        if (lista_viagem.indexOf(destino) >= 0) {
+            div_mensagem.innerHTML += `${lista_viagem[0]} <br>`
+        }
+    }
+
+    function terceira() {
+        var destino = input_destino.value;
+
+        if (lista_viagem.indexOf(destino) >= 0) {
+            div_mensagem.innerHTML += `${lista_viagem[2]} <br>`
+        }
+    }
+
+    function ultima() {
+        var destino = input_destino.value;
+        var tamanho_lista = lista_viagem.length;
+
+        if (lista_viagem.indexOf(destino) >= 0) {
+             div_mensagem.innerHTML += `${lista_viagem[tamanho_lista - 1]} <br>`
+        }
+    }
+</script>

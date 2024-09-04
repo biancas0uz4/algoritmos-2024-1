@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Linhas de ônibus: <input type="text" id="input_linhas">
+    <button onclick="gravar()">Gravar Busão</button>
+    <br>
+    Pesquisar: <input type="text" id="input_pesquisar">
+    <button onclick="pesquisar()">Pesquisar</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    var lista_onibus = [];
+    var lista_vezes = [];
+
+    function gravar() {
+        div_mensagem.innerHTML = '';
+        var linha = input_linhas.value;
+
+        lista_onibus.push(linha);
+
+        for (var index = lista_onibus.length - 1; index >= 0; index--) {
+            div_mensagem.innerHTML += `${lista_onibus[index]}<br>`;
+
+        }
+    }
+
+    function pesquisar() {
+        div_mensagem.innerHTML = '';
+
+        var linha = input_linhas.value;
+        var pesquisar = input_pesquisar.value;
+        var qtd = 0;
+
+
+        for (var index = 0; index < lista_onibus.length; index++) {
+            var elementoAtual = lista_onibus[index];
+
+            if (pesquisar == elementoAtual) {
+                lista_vezes.push(index)
+                qtd++
+                div_mensagem.innerHTML = `Você já pegou essa linha ${qtd} vezes, nessa ordem: ${lista_vezes}<br>`
+            } else{
+                div_mensagem.innerHTML = `Você nunca pegou essa linha `
+            }
+
+        }
+    }
+</script>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Avaliativa 1 - Sprint2</title>
+</head>
+
+<body>
+    <div id="div_mensagem1">
+        <h1>Seja bem vindo ao Banco KNAB</h1>
+        <br><br>
+        <h2>Simulação de Emprestimos e Investimentos</h2>
+        <br><br>
+        <h3>Entre com os dados da sua conta:</h3>
+
+        <input type="text" id="input_conta" placeholder="Conta">
+        <input type="text" id="input_digito" placeholder="Dígito">
+        <input type="password" id="input_senha" placeholder="Senha">
+
+        <br><br>
+        <br><br>
+
+        <button onclick="simular()">Simular</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function simular() {
+        var conta = Number(input_conta.value);
+        var digito = Number(input_digito.value);
+        var senha = input_senha.value;
+
+        var digito = resto
+        var resto = conta % 10
+        div_mensagem2.style.dysplay = 'none'
+        
+        if (conta != 0 && digito == resto && (digito == 0 || digito == 1 || digito == 2 || digito == 3) && senha == 'manaus') {
+
+            div_mensagem1.style.display = 'none'
+            div_mensagem2.style.display = 'block'
+        } else if (conta != 0 && (resto == 4 || resto == 5 || resto == 6 || resto == 7) && senha == 'recife') {
+
+            div_mensagem1.style.display = 'none'
+            div_mensagem2.style.display = 'block'
+        } else if (conta != 0 && resto > 7 && senha == 'fortaleza') {
+
+            div_mensagem1.style.display = 'none'
+            div_mensagem2.style.display = 'block'
+        } else {
+            alert("Dados inválidos, tente novamente")
+            
+        }
+
+
+    }
+</script>
+
+<html>
+
+<body>
+    <div id="div_mensagem2" style="display: none;">
+        <h1>O Banco KNAB é sua melhor opção</h1>
+        <h2>Empréstimos e Investimentosn com as melhores taxas do mercado</h2>
+        <h3>Entre com os dados da sua simulação</h3>
+        <br><br>
+        Valor da Operação: <input type="text" id="input_valor" placeholder="Valor">
+        <br><br>
+        <select name="operacao" id="input_operacao">
+            <option value="#" >Selecione a Operação</option>
+            <option value="1">Empréstimo</option>
+            <option value="2">Investimento</option>
+        </select>
+        <select name="prazos" id="input_prazos">
+            <option value="#" >Selecione o Prazo</option>
+            <option value="1P">Curto</option>
+            <option value="2P">Médio</option>
+            <option value="3P">Longo</option>
+        </select>
+
+        <br><br>
+        <br><br>
+        <button onclick="resultado()">Mostrar Resultado</button>
+        <br><br>
+        <button onclick="voltar()">Voltar a Simulação</button>
+
+
+        <div id="div_mensagem3"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    var contador = 1;
+    var contadorTotal = 0;
+
+    function resultado() {
+        var valor = Number(input_valor.value)
+        var operacao = input_operacao.value
+        var prazos = input_prazos.value
+
+        var emprestimo = 0
+        var investimento = 0
+        var juros = 0
+
+
+        if (prazos == "1P" || prazos == "2P") {
+            alert("Esta operação está condicionada ao seu perfil")
+        }
+        if (operacao == "1") {
+            if (prazos == "1P") {
+                emprestimo = 0.24;
+                prazos = 'curto'
+
+
+            }
+            if (prazos == "2P") {
+                emprestimo = 0.16;
+                prazos = 'médio'
+
+            }
+            if (prazos == "3P") {
+                emprestimo = 0.10;
+                prazos = 'longo'
+
+            }
+            contadorTotal = contadorTotal + contador
+            juros = valor * emprestimo
+
+            div_mensagem3.innerHTML += `Simulação ${contadorTotal} – Para o empréstimo de R$ ${valor} no ${prazos} prazo será cobrado os juros de R$ ${juros} ao ano <br>`
+
+        }
+
+        if (operacao == "2") {
+            if (prazos == "1P") {
+                investimento = 0.05;
+                prazos = 'curto'
+
+            }
+            if (prazos == "2P") {
+                investimento = 0.08;
+                prazos = 'médio'
+
+            }
+            if (prazos == "3P") {
+                investimento = 0.10;
+                prazos = 'longo'
+
+            }
+
+            contadorTotal = contadorTotal + contador
+            juros = valor * investimento
+
+            div_mensagem3.innerHTML += ` Simulação ${contadorTotal} – Investindo R$ ${valor} no ${prazos} prazo o seu rendimento será de R$ ${juros} ao ano <br> `;
+        }
+
+
+
+
+    }
+    function voltar() {
+        div_mensagem3.innerHTML = "";
+
+    }
+</script>

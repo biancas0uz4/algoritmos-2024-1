@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Projetos: <input type="text" id="input_proj">
+    <button onclick="registrar()">Registrar Projeto</button>
+    <div id="div_mensagem"></div>
+    <button onclick="mostrar()">Mostrar projetos</button>
+</body>
+
+</html>
+
+<script>
+    var lista_proj = [];
+
+    function registrar() {
+        div_mensagem.innerHTML = '';
+        var proj = input_proj.value;
+        var qtd = 0;
+        var experiencia = '';
+
+        lista_proj.push(proj);
+
+        if (lista_proj.length <= 4) {
+            experiencia = 'Júnior';
+
+        } else if (lista_proj.length <= 12) {
+            experiencia = 'Pleno';
+
+        } else {
+            experiencia = 'Sênior';
+        }
+
+        div_mensagem.innerHTML += `Você já fez ${lista_proj.length} projetos. Por isso você é um profissional ${experiencia}`;
+    }
+
+    function mostrar() {
+        div_mensagem.innerHTML = '';
+        var proj = input_proj.value;
+
+        lista_proj.push(proj);
+
+        for (let index = lista_proj.length - 1; index >= 0; index--) {
+            const projAtual = lista_proj[index];
+            
+            div_mensagem.innerHTML += `${projAtual} <br>`;
+        }
+
+    }
+</script>

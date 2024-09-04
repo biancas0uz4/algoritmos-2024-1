@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria</title>
+</head>
+
+<body>
+    <h1>Doceria</h1>
+
+    Quantidade de macaron: <input type="text" id="input_qtdM"> <br>
+    Quantidade de brigadeiro: <input type="text" id="input_qtdB"> <br>
+    Quantidade de cupcake: <input type="text" id="input_qtdC"> <br>
+    Quantidade de cheesecake: <input type="text" id="input_qtdCake"> <br>
+    Preço do macaron: <input type="text" id="input_precoM"> <br>
+    Preço do brigadeiro: <input type="text" id="input_precoB"> <br>
+    Preço do cupcake: <input type="text" id="input_precoC"> <br>
+    Preço do cheesecake: <input type="text" id="input_precoCake"> <br>
+    <br>
+    <button onclick="verificar()">Verificar Vendas</button>
+
+    <div id="div_mensagem"></div>
+
+
+</body>
+
+</html>
+
+
+<script>
+    var cont = 0 ;
+    function verificar() {
+        var qtdM = Number(input_qtdM.value);
+        var qtdB = Number(input_qtdB.value);
+        var qtdC = Number(input_qtdC.value);
+        var qtdCake = Number(input_qtdCake.value);
+
+        var precoM = Number(input_precoM.value);
+        var precoB = Number(input_precoB.value);
+        var precoC = Number(input_precoC.value);
+        var precoCake = Number(input_precoCake.value);
+
+        var precoTotal = 0;
+
+        if (qtdM < 0 || qtdB < 0 || qtdC < 0 || qtdCake < 0 || precoM < 0 || precoB < 0 || precoC < 0 || precoCake < 0) {
+            alert("Por favor, preencha todos os campos com números válidos");
+        }
+      
+            for (var contador = 1; contador <= qtdM; contador++) {
+                cont++
+                div_mensagem.innerHTML += `Venda ${cont} -  
+                <img src="../assets/macaron.webp" 
+                width="100px" height="80px"> - R$ ${precoM} <br>`
+                precoTotal += precoM
+            }
+            for (var contador = 1; contador <= qtdB; contador++) {
+                cont++
+                div_mensagem.innerHTML += `Venda ${cont} -  
+                <img src="../assets/brigadeiro-gourmet.jpg" 
+                width="100px" height="80px"> - R$ ${precoB} <br>`
+                precoTotal += precoB
+            }
+            for (var contador = 1; contador <= qtdC; contador++) {
+                cont++
+                div_mensagem.innerHTML += `Venda ${cont} -  
+                <img src="../assets/157877-vanilla-cupcakes-ddmfs-4X3-0397-59653731be1d4769969698e427d7f5bc.jpg" 
+                width="100px" height="80px"> - R$ ${precoC} <br>`
+                precoTotal += precoC
+
+            }
+            for (var contador = 1; contador <= qtdCake; contador++) {
+                cont++
+                div_mensagem.innerHTML += `Venda ${cont} -  
+                <img src="../assets/No-bake-raspberry-cheesecake-cc1ee62.jpg" 
+                width="100px" height="80px"> - R$ ${precoCake} <br>`
+                precoTotal += precoCake
+
+            }
+         div_mensagem.innerHTML += `Com a quantidade de ${qtdM} Macarons, ${qtdB} Brigadeiros, ${qtdC} Cupcakes e ${qtdCake} Cheesecakes, a venda totalizará R$ ${precoTotal} <br>`
+        }
+    
+</script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Preço: <input type="text" id="input_preco">
+    Nome Produto: <input type="text" id="input_nome">
+    <button onclick="cadastrar()">Cadastro</button>
+    <button onclick="atualizar()">Atualizar Estoque</button>
+    <br><br>
+    Filtrar Produto:
+    <select id="select_filtro">
+        <option selected>Selecione</option>
+        <option value="1">Preços acima de</option>
+        <option value="2">Preços abaixo de</option>
+    </select>
+    Valor: <input type="text" id="input_valor">
+    <button onclick="filtrar()">Filtrar Produtos</button>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista_produto = [];
+    var lista_preco = [];
+
+    function cadastrar() {
+        var preco = Number(input_preco.value);
+        var nome = input_nome.value;
+
+        if (nome.length >= 3 && preco > 0) {
+            lista_produto.push(nome);
+            lista_preco.push(preco);
+            div_mensagem.innerHTML = `Produto cadastrado com sucesso!`
+        } else {
+            div_mensagem.innerHTML = `Erro ao cadastrar`
+        }
+
+    }
+    function atualizar() {
+        div_mensagem.innerHTML = '';
+        var total = 0;
+
+        if (lista_produto.length == 0) {
+            div_mensagem.innerHTML += `Nenhum produto cadastrado`
+        } else {
+            div_mensagem.innerHTML += `Você tem ${lista_produto.length} produtos cadastrados em estoque: <br><br>`;
+        }
+
+        for (var index = 0; index < lista_produto.length; index++) {
+            total += lista_preco[index];
+
+            div_mensagem.innerHTML += `${index + 1} - ${lista_produto[index]}  R$ ${lista_preco[index]}<br><br>`
+
+        }
+
+        div_mensagem.innerHTML += ` Seu estoque vale R$ ${total}`
+    }
+    function filtrar() {
+        div_mensagem.innerHTML = '';
+        var valor = Number(input_valor.value);
+        var filtro = select_filtro.value;
+
+        for(var index = 0; index < lista_produto.length; index++){
+            if((filtro == "1" && lista_preco[index] > valor)||(filtro == "2" && lista_preco[index] < valor)){
+                div_mensagem.innerHTML += `${index + 1} - ${lista_produto[index]}: R$ ${lista_preco[index]}<br>`
+            }
+        }
+    }
+</script>

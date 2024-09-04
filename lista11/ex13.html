@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Indique o resultado: <select id="select_resultado">
+        <option selected>Selecione</option>
+        <option value="1">Vitória</option>
+        <option value="2">Empate</option>
+        <option value="3">Derrota</option>
+    </select>
+    <button onclick="registrar()">Registrar jogo</button>
+    <br>
+    Qual jogo deseja saber o resultado? <input type="text" id="input_jogo">
+    <button onclick="resultado()">Resultado</button>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var lista_resultado = [];
+
+    var vitoria = 0;
+    var empate = 0;
+    var derrota = 0;
+
+    function registrar() {
+        div_mensagem.innerHTML = '';
+
+        var resultado = select_resultado.value;
+
+
+        lista_resultado.push(resultado);
+
+        if (resultado == 1) {
+            vitoria++
+        } else if (resultado == 2) {
+            empate++
+        } else {
+            derrota++
+        }
+
+        var pontosV = vitoria * 3;
+        var pontosE = empate * 1;
+        var pontosD = derrota * 0;
+        var totalPontos = pontosV + pontosE + pontosD;
+        var totalJogos = vitoria + empate + derrota;
+        var aproveitamento = (totalPontos / (totalJogos * 3)) * 100;
+
+        div_mensagem.innerHTML += ` O time teve: ${vitoria} vitórias, ${empate} empates, ${derrota} derrotas  
+        <br>
+        Pontuação total: ${totalPontos} pontos  
+        <br>
+        Aproveitamento: ${aproveitamento}% `;
+    }
+
+    function resultado() {
+        var jogo = input_jogo.value
+        div_mensagem.innerHTML = '';
+
+        if (jogo >= 1 && jogo <= lista_resultado.length) {
+            var resultadoJogo = lista_resultado[jogo - 1];
+
+            if (resultadoJogo == 1) {
+                div_mensagem.innerHTML += `No ${jogo}º jogo, o time Ganhou `;
+            } else if (resultadoJogo == 2) {
+                div_mensagem.innerHTML += `No ${jogo}º jogo, o time Empatou `;
+            } else if (resultadoJogo == 3) {
+                div_mensagem.innerHTML += `No ${jogo}º jogo, o time Perdeu `;
+            }
+        } else {
+            div_mensagem.innerHTML += `Não foi cadastrado um ${jogo}º jogo`;
+        }
+    }
+    
+</script>

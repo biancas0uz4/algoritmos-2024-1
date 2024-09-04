@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Episódio Inicial: <input type="text" id="input_episodio"> <br>
+    Tempo disponível: <input type="text" id="input_disponivel"> <br>
+    Unidade de tempo: <select id="select_unidade">
+        <option>Horas</option>
+        <option>Minutos</option>
+    </select> <br>
+    Pular Abertura? <select id="select_abertura">
+        <option>Não</option>
+        <option>Sim</option>
+    </select> <br>
+    Pular Encerramento? <select id="select_encerramento">
+        <option>Não</option>
+        <option>Sim</option>
+    </select> <br>
+
+    <button onclick="assistir()">Assistir Episódios</button>
+
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+    function assistir() {
+        var episodio = Number(input_episodio.value);
+        var disponivel = Number(input_disponivel.value);
+        var unidade = select_unidade.value;
+        var abertura = select_abertura.value;
+        var encerramento = select_encerramento.value;
+
+        div_mensagem.innerHTML = "";
+
+        // if (episodio < 1 || episodio > 1100) { alert() }
+        if (episodio >= 1 && episodio <= 1100) {
+        
+            if (unidade == "Horas") {
+                // disponivel = disponivel * 60;
+                disponivel *= 60;
+            }
+
+            var tempo_ep = 20; 
+            // var tempo_ep = 24; 
+
+            if (abertura == "Não") { // se validar o "Sim", reduz em 2
+                tempo_ep += 2; 
+                // tempo_ep -= 2; 
+            }
+            if (encerramento == "Não") { // se validar o "Sim", reduz em 2
+                tempo_ep += 2;
+                // tempo_ep -= 2; 
+            }
+
+            var episodios_assistidos = disponivel / tempo_ep; // divide o tempo disponível pela duração do episódio
+
+            // a cada repetição de episódio, verifica se o usuário ainda possui tempo disponível;
+            for (var cont_ep = episodio; disponivel > 0; cont_ep++) {
+                div_mensagem.innerHTML += `<br>Episódio ${cont_ep} <br>`;
+
+                // lembre-se que a duração do episódio varia de acordo com "abertura" e "encerramento", sendo: 24 minutos o episódio completo; 22 minutos se pular abertura OU encerramento; 20 minutos se pular abertura E encerramento;
+                // repete até de 1 até o final da duração do episódio, validando também se o usuário possui tempo disponível
+                for (var cont_minutos = 1; cont_minutos <= tempo_ep && disponivel > 0; cont_minutos++) {
+                    div_mensagem.innerHTML += `Minuto ${cont_minutos} - `;
+
+                    if (abertura == "Não" && cont_minutos <= 2) { // se NÃO pulou a abertura e o contador de minutos for "<=2", significa que está na abertura
+                        div_mensagem.innerHTML += "Assistindo Abertura<br>";
+                    } else if (encerramento == "Não" && cont_minutos > tempo_ep - 2) { // se NÃO pulou o encerramento, valida se o contador está nos 2 últimos minutos do episódio, com base no "tempo_ep-2"
+                        /*  } else if (encerramento == "Não" && (abertura == "Sim" && cont_minutos > 20 || cont_minutos > 22))  { // se NÃO pulou o encerramento e o 'contador for ">20" e PULOU abertura', OU o 'contador ">22"', significa que está no encerramento do episódio
+                            } else if (encerramento == "Não" && tempo_ep - cont_minutos <= 1)  { // se NÃO pulou o encerramento e o TEMPO DO EPISÓDIO - o MINUTO ATUAL for <=1, significa que está no encerramento do episódio    */
+                        div_mensagem.innerHTML += "Assistindo Encerramento<br>";
+                    } else { // se não passou nas validações anteriores, significa que está vendo o episódio;
+                        div_mensagem.innerHTML += "Assistindo o conteúdo do Episódio<br>";
+                    }
+
+                    disponivel--; // a cada minuto exibido, reduz 1 do tempo disponível do usuário
+                }
+            }
+
+            div_mensagem.innerHTML += `<br>Fim dos episódios! <br>Assistiu ${episodios_assistidos} episódios.`;
+        } else {
+            alert("O episódio é inválido");
+        }
+    }
+</script>

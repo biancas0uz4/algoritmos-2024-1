@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sete & Meio</title>
+    <link rel="stylesheet" href="seteEmeio.css">
+</head>
+
+<body>
+    <div class="card-img-pessoa">
+        <img src="assets/pessoa.png">
+    </div>
+
+    <div class="cardImgPessoa">
+        <img src="assets/robo.png">
+    </div>
+
+    <div class="circulo">
+        <h1 style="color: white;">Sete & Meio</h1>
+
+        <div id="div_mensagemBotao">
+            <button onclick="jogar()">Jogar Sete e Meio</button>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h1 class="divResultado">Resultado Jogo</h1> <br>
+        <div id="div_mensagem"> </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let cartasBaralho = {
+        copas: ['Ás de copas', '2 de copas', '3 de copas', '4 de copas', '5 de copas', '6 de copas', '7 de copas', 'Valete de copas', 'Dama de copas', 'Rei de copas'],
+        espadas: ['Ás de espadas', '2 de espadas', '3 de espadas', '4 de espadas', '5 de espadas', '6 de espadas', '7 de espadas', 'Valete de espadas', 'Dama de espadas', 'Rei de espadas'],
+        ouros: ['Ás de ouros', '2 de ouros', '3 de ouros', '4 de ouros', '5 de ouros', '6 de ouros', '7 de ouros', 'Valete de ouros', 'Dama de ouros', 'Rei de ouros'],
+        paus: ['Ás de paus', '2 de paus', '3 de paus', '4 de paus', '5 de paus', '6 de paus', '7 de paus', 'Valete de paus', 'Dama de paus', 'Rei de paus'],
+
+    };
+
+    let conta = [1, 2, 3, 4, 5, 6, 7, 'Valete', 'Dama', 'Rei'];
+
+
+
+    let sorteadorBaralho = 0;
+    let sorteadorCarta = 0;
+    let pontosJogador = 0;
+    let pontosBanca = 0;
+    let cartasSorteadas = 0;
+    function jogar() {
+
+        sortear();
+
+        if (typeof conta[sorteadorCarta] == 'string') {
+            pontosJogador += 0.5;
+        } else {
+            pontosJogador += conta[sorteadorCarta];
+        }
+
+        div_mensagemBotao.innerHTML = `
+        <button onclick="pedir()">Outra Carta</button> <br>
+        <button onclick="passarVez()">Passar Vez</button><br>
+        <button onclick="jogarNovamente()">Jogar novamente</button>`
+        div_mensagem.innerHTML = `
+          <span class='fraseInner'>Jogador: </span>
+         (${pontosJogador}  pontos) - ${cartasSorteadas[sorteadorCarta]}<br> 
+         `;
+
+    }
+
+    function pedir() {
+        sortear();
+
+        if (pontosJogador >= 7.5) {
+
+        } else {
+            if (pontosBanca <= 7.5 && pontosBanca < pontosJogador) {
+
+
+
+                if (typeof conta[sorteadorCarta] == 'string') {
+                    pontosJogador += 0.5;
+                } else {
+                    pontosJogador += conta[sorteadorCarta];
+                }
+
+                if (pontosJogador < 7.5 && pontosJogador != 7.5) {
+                    div_mensagem.innerHTML += `<br>
+                    <span class='fraseInner'> Quero mais uma carta!</span>
+                    (${pontosJogador}  pontos) - ${cartasSorteadas[sorteadorCarta]} <br>
+                 `;
+
+                } else if (pontosJogador == 7.5) {
+                    div_mensagem.innerHTML += `<br> 
+                        <span class='fraseInner'> Quero mais uma carta! </span>
+                        (${pontosJogador}  pontos) - ${cartasSorteadas[sorteadorCarta]} <br> <br>
+                        <span style="color: green; font-size: 20px"> SETE E MEIO! <br> O jogador venceu com 7.5 pontos!</span></b> <br>
+                    `;
+                } else {
+                    div_mensagem.innerHTML += `<br> 
+                       <span class='fraseInner'> Quero mais uma carta! </span>
+                        (${pontosJogador}  pontos) - ${cartasSorteadas[sorteadorCarta]} <br><br>
+                         <span> O JOGADOR ESTOUROU! </span><br> <span style="color: red; font-size: 20px"> A banca venceu com ${pontosBanca} pontos! </span> 
+                    `;
+                }
+            }
+        }
+    }
+
+    function passarVez() {
+
+        if (pontosBanca <= 7.5) {
+            if (pontosJogador <= 7.5) {
+
+                div_mensagem.innerHTML += `<br> <span class='fraseInner'> Banca:</span>`;
+
+                for (; pontosBanca < 7.5 && pontosBanca < pontosJogador && pontosBanca != 7.5 && pontosBanca != pontosJogador;) {
+                    sortear();
+
+                    if (typeof conta[sorteadorCarta] == 'string') {
+                        pontosBanca += 0.5;
+                    } else {
+                        pontosBanca += conta[sorteadorCarta];
+                    }
+
+                    div_mensagem.innerHTML += `<br> 
+                        <span class='fraseInner'>É necessário virar outra carta para a banca! </span>
+                        (${pontosBanca}  pontos) - ${cartasSorteadas[sorteadorCarta]} <br>
+                    `;
+                }
+
+                if (pontosBanca == 7.5) {
+                    div_mensagem.innerHTML += `<br>
+                 <span style="color: red; font-size: 20px"> SETE E MEIO! A banca venceu com 7.5 pontos! </span>`;
+                } else if (pontosBanca > 7.5) {
+                    div_mensagem.innerHTML += `<br> 
+                 A BANCA ESTOUROU! <span style="color: green; font-size: 20px"> O jogador venceu com ${pontosJogador} pontos! </span>`;
+                } else {
+                    div_mensagem.innerHTML += `<br>
+                 <span style="color: red; font-size: 20px"> A banca venceu com ${pontosBanca} pontos! </span>`;
+                }
+
+            }
+        }
+    }
+
+    function sortear() {
+        sorteadorBaralho = (Math.random() * 3 + 1).toFixed();
+        sorteadorCarta = (Math.random() * 9).toFixed();
+
+        if (sorteadorBaralho == 1) {
+            cartasSorteadas = cartasBaralho.copas;
+
+        } else if (sorteadorBaralho == 2) {
+            cartasSorteadas = cartasBaralho.espadas;
+
+        } else if (sorteadorBaralho == 3) {
+            cartasSorteadas = cartasBaralho.ouros;
+
+        } else {
+            cartasSorteadas = cartasBaralho.paus;
+
+        }
+    }
+
+
+
+    function jogarNovamente() {
+        sorteadorBaralho = 0;
+        sorteadorCarta = 0;
+        pontosJogador = 0;
+        pontosBanca = 0;
+        cartasSorteadas = 0;
+        jogar();
+    }
+</script>

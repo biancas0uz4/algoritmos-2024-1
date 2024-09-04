@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Número (20 a 100): <input type="number" id="ipt_num">
+
+    <button onclick="calcular()">Adoro múltiplos de 5</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function calcular() {
+       var numero = Number(ipt_num.value);
+
+        if(numero >= 20 && numero <=100){
+
+            for (var contador = 0; contador <= numero; contador ++ ) {
+                var resto = contador % 5;
+
+                if(resto == 0){
+                    div_mensagem.innerHTML += `${contador}<br>`
+
+                }
+
+                
+            }
+     
+    }else{
+        alert("O número inserido é inválido")
+    }
+}
+</script>

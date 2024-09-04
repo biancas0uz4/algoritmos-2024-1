@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Tipo de passageiro: <select id="ipt_passageiro">
+        <option selected>Selecione...</option>
+        <option>Comum</option>
+        <option>Estudante</option>
+        <option>Idoso/PNE</option>
+    </select>
+    Tipo de passagem: <select id="ipt_passagem">
+        <option selected>Selecione...</option>
+        <option>Passagem única</option>
+        <option>Passagem integração</option>
+    </select>
+    <button onclick="simular()">Simular preço</button>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function simular() {
+        div_mensagem.innerHTML = '';
+
+        var passageiro = ipt_passageiro.value;
+        var passagem = ipt_passagem.value;
+
+        var passagem_uni = 4.40
+        var integracao = 5.90
+        var desconto_uni = passagem_uni * 0.5
+        var desconto_int = integracao * 0.5
+
+        if (passageiro == 'Comum' && passagem == 'Passagem única') {
+            div_mensagem.innerHTML += `Valor da passagem escolhida: R$ ${passagem_uni} `
+
+        } else if (passageiro == 'Comum' && passagem == 'Passagem integração') {
+            div_mensagem.innerHTML += `Valor da passagem escolhida: R$ ${integracao} `
+
+            
+        } else if ((passageiro == 'Estudante' || passageiro == 'Idoso/PNE') && passagem == 'Passagem única') {
+            
+            div_mensagem.innerHTML += `Valor da passagem escolhida: R$ ${desconto_uni} `
+            
+        } else if ((passageiro == 'Estudante' || passageiro == 'Idoso/PNE') && passagem == 'Passagem integração'){
+           
+            div_mensagem.innerHTML += `Valor da passagem escolhida: R$ ${desconto_int} `
+        }
+    }
+</script>

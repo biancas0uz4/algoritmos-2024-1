@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Ghost, do outra lado da vida</h1>
+
+    Quantidade de elefantes: <input type="text" id="input_qtd">
+    <button onclick="exibir()">Atazanar a médium</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function exibir() {
+        div_mensagem.innerHTML = "";
+
+        var limite = Number(input_qtd.value);
+
+        
+        for (var contador = limite; contador <= limite; contador++) {
+            div_mensagem.innerHTML += `1 elefante incomoda muita gente! <br>`
+            
+            
+            if (contador > 1) {
+                div_mensagem.innerHTML += `${contador} elefantes`
+                for (var contador = 1; contador <= limite; contador++) {
+                    div_mensagem.innerHTML += ` incomodam,`
+
+                }
+                div_mensagem.innerHTML += ` muito mais!<br>`
+                
+            }
+        }
+    }
+
+    // tentei realizar o exercicio mas não consegui fazer a  repetição das frases
+</script>

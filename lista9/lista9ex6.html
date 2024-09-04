@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome da pessoa que mais ama: <input type="text" id="input_nome">
+    <br>
+    Quanto você ama de 0 a 10: <input type="text" id="input_amor">
+    <br>
+    <button onclick="amr()">Expressar amor</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function amr(){
+        var nome = input_nome.value
+        var amor = Number(input_amor.value)
+
+        for(var contador = 1 ; contador <= amor; contador ++){
+            div_mensagem.innerHTML += `${contador} - ${nome}, eu te amo! Sempre lembre disso! <br>`
+        }
+    }
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">Exibir</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    var lista_usuarios = [];
+
+    function exibir(){
+        div_mensagem.innerHTML = '';
+        var pessoa = {
+            nome: "Fulano",
+            endereco: {
+                rua: "Haddock Lobo",
+                bairro: "Cerqueira Cesar",
+                cidade: "São Paulo",
+                estado: "SP",
+                CEP: '01414-001',
+                numero: 595
+            }
+        }
+
+        console.log(pessoa);
+        // div_mensagem.innerHTML = JSON.stringify(pessoa);
+
+        lista_usuarios.push(pessoa);
+
+        for (let index = 0; index < lista_usuarios.length; index++) {
+            const pessoaAtual= lista_usuarios[index];
+            
+            div_mensagem.innerHTML += ` ${pessoaAtual.nome}<br><br>
+            ${pessoaAtual.endereco.rua},
+            ${pessoaAtual.endereco.bairro} -
+            ${pessoaAtual.endereco.cidade},
+            ${pessoaAtual.endereco.estado},
+            ${pessoaAtual.endereco.CEP},
+            ${pessoaAtual.endereco.numero}`
+           
+
+        }
+
+    }
+</script>

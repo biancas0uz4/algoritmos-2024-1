@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="contar()">Contar</button>
+    <button onclick="contar_performatico()">Contar Performático</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+
+    // na função 'contar()', a cada repetição, acessa o documento HTML procurando pelo ID "div_mensagem" para incrementar seu conteúdo, o que impacta a performance
+    function contar() {
+        div_mensagem.innerHTML = ""; // limpa a div
+
+        // contando até 5000 (dois mil e quinhentos) - aumente o número de repetições para ver o impacto na performance do código
+        for (var contador = 1; contador <= 5000; contador++) {
+            div_mensagem.innerHTML += `${contador}<br>`;
+        }
+    }
+
+
+    // na função 'contar_performatico()', a cada repetição, acumula o texto em uma variável auxiliar para ao final das repetições acessar o HTML apenas uma vez, atualizando o conteúdo da "div_mensagem"
+    function contar_performatico() {
+        var texto = "";
+
+        // contando até 500000 (quinhentos mil) - aumente o número de repetições para ver o impacto na performance do código
+        for (var contador = 1; contador <= 500000;contador++) {
+            texto += `${contador}<br>`;
+        }
+
+        div_mensagem.innerHTML = texto;
+    }
+    // na função "contar_performatico()", estamos contando 50x a mais que na função "contar()", o que demonstra que ao acessar o HTML apenas uma vez ao final das repetições, temos uma melhoria impactante na performance do código
+
+</script>

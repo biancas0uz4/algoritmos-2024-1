@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">s2 pares</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function exibir() {
+        // var texto = "";
+        div_mensagem.innerHTML = "";
+        for (var contador = 1; contador <= 100; contador++) {
+            var resto = contador % 2; // divide o contador por 2 e obtém o resto da divisão
+
+            // caso o resto seja 0, significa que é divisível por 2, ou seja, é um número PAR
+            if (resto == 0) {
+                div_mensagem.innerHTML += `${contador}<br>`;
+            } 
+        }
+    }
+</script>

@@ -1,0 +1,48 @@
+// Valor da parte
+var parte = 50;
+// Valor total
+var total = 200;
+// Calcular a porcentagem
+var porcentagem = (parte / total) * 100;
+console.log("A porcentagem é: " + porcentagem + "%");
+// Valor total
+var total = 150;
+// Porcentagem
+var percentagem = 20;
+// Calcular a parte
+var parte = total * (percentagem / 100);
+console.log("A parte é: " + parte);
+// Valor da parte
+var parte = 30;
+// Valor total
+var total = 150;
+// Calcular a porcentagem
+var porcentagem = (parte / total) * 100;
+console.log("A porcentagem é: " + porcentagem + "%");
+// Valor inicial
+var inicial = 100;
+// Valor final
+var final = 150;
+// Calcular a porcentagem de aumento ou redução
+var porcentagem = ((final - inicial) / inicial) * 100;
+console.log("A porcentagem de aumento ou redução é: " + porcentagem + "%");
+
+Em JavaScript, o operador de resto é representado pelo símbolo de porcentagem (%). Ele retorna o resto da divisão de dois números. Aqui está como funciona:
+
+javascript
+Copy code
+var resto = 5 % 2; // O resultado será 1, pois 5 dividido por 2 é igual a 2 com um resto de 1.
+console.log(resto); // Output: 1
+Nesse exemplo, 5 é dividido por 2. Como 2 cabe duas vezes em 5 (2 * 2 = 4) com um resto de 1, o operador % retorna esse resto, que é 1.
+
+O operador de resto é frequentemente usado para verificar se um número é par ou ímpar. Se o resto da divisão por 2 for 0, o número é par; caso contrário, é ímpar:
+
+
+var resto = 5 % 2; // O resultado será 1, pois 5 dividido por 2 é igual a 2 com um resto de 1.
+console.log(resto); // Output: 1
+var numero = 7;
+if (numero % 2 === 0) {
+    console.log(numero + " é um número par.");
+} else {
+    console.log(numero + " é um número ímpar.");
+}

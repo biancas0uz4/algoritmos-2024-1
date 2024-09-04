@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="contar()">Contar com incremento!</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    /* inicializa o contador e o limite de contagem de forma global, para preservar seus valores entre as chamadas da função*/
+    var contador = 1;
+    var limite = 10;
+
+    function contar() {
+        div_mensagem.innerHTML = ""; // limpa a div
+        
+        // conta do número atual do contador até o limite
+        for (   ; contador <= limite; contador++) {
+            div_mensagem.innerHTML += `${contador} <br>`;
+        }
+        
+        limite += 10; // ao final das contagens, quando finalizar o FOR, acrescenta 10 no limite global, para a próxima chamada da função
+    }
+
+
+    /*
+        Acima, utilizando variáveis globais, criamos uma função que contém uma estrutura de repetição FOR, que se repete enquanto o contador for menor que o limite:
+        
+        1. Na primeira execução da função, o contador está em 1 e o limite em 10, portanto, contará de 1 a 10, até o contador se tornar 11 (maior que o limite de 10, então para as repetições);
+        2. Ao final das repetições da contagem, adiciona 10 ao valor da variável "limite", transformando o limite em 20.
+        3. Como o contador e o limite são variáveis globais, preservará o valor 11 no contador e o valor 20 no limite mesmo após a execução da função;
+        4. Na próxima execução da função, o contador estará em 11 e o limite em 20, portanto, contará de 11 a 20, até o contador se tornar 21 (maior que o limite de 20, então para as repetiçoes);
+        5. Ao final das repetições da contagem, adiciona 10 ao valor da variável "limite", transformando o limite em 30.
+        
+        A cada nova execução, conta de X até o limite de Y e ao final das repetições, incrementa Y para que na próxima execução, possa atingir esse novo limite incrementado.
+    */
+</script>

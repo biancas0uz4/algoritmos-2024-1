@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div_1">
+        Ingrediente: <input type="text" id="input_ingrediente"> <br>
+        Peso em gramas: <input type="text" id="input_peso"> <br>
+        Preço por quilo: <input type="text" id="input_preco"> <br>
+        <button onclick="adicionar_ingrediente()">Adicionar Ingrediente no Blend</button>
+        
+        <br><br>
+        Nome do Hamburguer: <input type="text" id="input_nome">
+        <button onclick="preparar()">Preparar Blend e Registrar</button>
+    
+        <br><br>
+        <button onclick="montar()">Montar Cardápio</button>
+    </div>
+
+    <div id="div_2" style="display: none;">
+        Tipo de Hamburguer: <input type="text" id="input_hamburguer"> <br>
+        Quantidades de Hamburguer: <input type="text" id="input_qtd"> <br>
+        
+        Tipo de Queijo: <select id="select_queijo">
+            <option>Sem Queijo</option>
+            <option>Mussarela</option>
+            <option>Prato</option>
+            <option>Cheddar</option>
+        </select>
+
+        Cebola: <select id="select_cebola">
+            <option>Sim</option>
+            <option>Não</option>
+        </select> <br>
+
+        Alface: <select id="select_alface">
+            <option>Sim</option>
+            <option>Não</option>
+        </select> <br>
+
+        Tomate: <select id="select_tomate">
+            <option>Sim</option>
+            <option>Não</option>
+        </select> <br>
+
+        <br>
+        <button onclick="adicionar_lanche()">Adicionar Lanche ao Cardápio</button>
+    </div>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    // vetores para manipular os ingredientes que vão preparar o hamburguer
+    var lista_nomes_ingrediente = [];
+    var lista_pesos_ingrediente = [];
+    var lista_precos_ingrediente = [];
+
+
+    // vetores para manipular os hamburgueres preparados
+    var lista_nomes_hamburguer = [];
+    var lista_pesos_hamburguer = [];
+    var lista_precos_hamburguer = [];
+
+
+    function adicionar_ingrediente() {
+        var ingrediente = input_ingrediente.value;
+        var peso = Number(input_peso.value);
+        var preco = Number(input_preco.value);
+
+        var posicao_ingrediente = lista_nomes_ingrediente.indexOf(ingrediente); // obtém o índice do ingrediente através do nome
+
+        if (ingrediente == "" || ingrediente <= 0 || ingrediente <= 0) { // se algum campo estiver vazio
+            div_mensagem.innerHTML = `<b style="color: red">Preencha todos os campos para prosseguir!</b>`;
+        } else if (posicao_ingrediente >= 0) { // se encontrou um índice válido para o ingrediente pesquisado, ele já existe
+            div_mensagem.innerHTML = `<b style="color: red">O ingrediente ${ingrediente} já foi adicionado!</b>`;
+        } else { // se todos os campos estiverem preenchidos e o ingrediente ainda não existe na lista
+            lista_nomes_ingrediente.push(ingrediente); // adiciona o "ingrediente" na lista de ingredientes
+            lista_pesos_ingrediente.push(peso); // adiciona o "peso" na lista de pesos
+            lista_precos_ingrediente.push(preco); // adiciona o "preco" na lista de precos
+            // como os três vetores são incrementados ao mesmo tempo, é impossível um vetor ter mais itens que o outro.
+
+            div_mensagem.innerHTML = `<b style="color: green">Adicionados ${peso} gramas de ${ingrediente} no blend do hamburguer </b>`;
+        }
+    }
+
+
+    function preparar() {
+        var nome = input_nome.value;
+        
+        if (nome == "") { // se o nome está vazio
+            div_mensagem.innerHTML = `<b style="color: red">Preencha o nome do hamburguer!</b>`;
+        } else if (lista_nomes_ingrediente.length < 2) { // se o vetor possui menos de 2 elementos
+            div_mensagem.innerHTML = `<b style="color: red">Adicione ao menos 2 ingredientes para o blend do hamburguer</b>`;
+        } else { // se o nome está preenchido e o vetor possui 2 ou mais elementos
+
+            var peso_total = 0;
+            var preco_total = 0;
+
+            div_mensagem.innerHTML = "<h2>PREPARANDO NOVO HAMBURGUER</h2>"
+
+            // percorre do índice 0 até o último índice válido do vetor
+            for (var index = 0; index < lista_nomes_ingrediente.length; index++)  {
+                
+                var ingrediente = lista_nomes_ingrediente[index]; // obtém o "ingrediente" atual da lista, com base no índice atual
+                var peso = lista_pesos_ingrediente[index]; // obtém o "peso" atual da lista, com base no índice atual
+                var preco = lista_precos_ingrediente[index]; // obtém o "preco" atual da lista, com base no índice atual
+
+                var preco_final = peso * preco / 1000; // calcula o valor final do ingrediente (peso em GRAMAS vs preço em QUILO, deve converter dividindo por 1000)
+                
+                peso_total += peso;  // acumula o peso do ingrediente ao peso do hamburguer 
+                preco_total += preco_final; // acumula o preco final do ingrediente ao preco final do hamburguer 
+
+                div_mensagem.innerHTML += `
+                    ${index + 1} - 
+                    Ingrediente: ${ingrediente} - 
+                    Peso: ${peso} - 
+                    Preço KG: ${preco} - 
+                    Preço Final: ${preco_final}  <br>
+                `;
+            }
+
+            div_mensagem.innerHTML += `
+                <h2>INFORMAÇÕES DO HAMBURGUER REGISTRADO NO CATÁLOGO:  </h2>
+                Nome: ${nome}  <br>
+                Peso Total: ${peso_total} <br>  
+                Preço Total: ${preco_total}  
+            `;
+
+            lista_nomes_hamburguer.push(nome); // armazena o nome do hamburguer na lista da parte 2
+            lista_pesos_hamburguer.push(peso_total); // armazena o peso total do hamburguer na lista da parte 2
+            lista_precos_hamburguer.push(preco_total); // armazena o preço total do hamburguer na lista da parte 2
+
+            lista_nomes_ingrediente = []; // limpa os vetores de ingrediente, para não "poluir" o próximo blend
+            lista_pesos_ingrediente = []; // limpa os vetores de ingrediente, para não "poluir" o próximo blend
+            lista_precos_ingrediente = []; // limpa os vetores de ingrediente, para não "poluir" o próximo blend
+        }
+    }
+
+
+    function montar() {
+        if (lista_nomes_hamburguer.length > 0) { // se a lista possui ao menos 1 hamburguer registrado
+            div_1.style.display = "none";  // oculta a div 1
+            div_2.style.display = "block"; // exibe a div 2
+            div_mensagem.innerHTML = ""; // limpa as mensagens anteriores
+        } else { // se a lista estiver vazia
+            div_mensagem.innerHTML = `<b style="color: red">Adicione ao menos um novo blend para prosseguir!</b>`;
+        }
+    }
+
+
+    function adicionar_lanche() {
+        var hamburguer = input_hamburguer.value;
+        var qtd = input_qtd.value;
+        var queijo = select_queijo.value;
+        var cebola = select_cebola.value;
+        var alface = select_alface.value;
+        var tomate = select_tomate.value;
+
+        var posicao_hamburguer = lista_nomes_hamburguer.indexOf(hamburguer); // obtém o índice do hamburguer através do nome
+
+        if (posicao_hamburguer < 0) { // se NÃO encontrou um índice válido para o hamburguer pesquisado, ele NÃO existe
+            div_mensagem.innerHTML = `<b style="color: red">O hamburguer ${hamburguer} não existe no catálogo!</b>`;
+        } else if (qtd <= 0) { // se quantidade for negativa ou zero
+            div_mensagem.innerHTML = `<b style="color: red">Adicione uma quantidade válida de hamburgueres!</b>`;
+        } else { // se a quantidade for acima de 0 e o hamburguer existe na lista
+
+            var peso_hamburguer = lista_pesos_hamburguer[posicao_hamburguer]; // obtém o peso do hamburguer de acordo com a posição encontrada
+            var preco_hamburguer = lista_precos_hamburguer[posicao_hamburguer]; // obtém o preco do hamburguer de acordo com a posição encontrada
+
+            var preco_final = preco_hamburguer * qtd; // calcula o preço final do hamburguer
+
+            // valida o tipo de queijo
+            if (queijo == "Mussarela") {
+                preco_final += 2;
+            } else if (queijo == "Prato") {
+                preco_final += 2.5;
+            } else if (queijo == "Cheddar") {
+                preco_final += 3;
+            }
+
+            if (cebola == "Sim") {
+                preco_final += 1.5;
+            }
+            if (alface == "Sim") {
+                preco_final += 1.75;
+            }
+            if (tomate == "Sim") {
+                preco_final += 2;
+            }
+
+            // exibe a mensagem final, com um resumo do lanche
+            div_mensagem.innerHTML = `
+                Tipo Hamburguer: ${hamburguer}  (${peso_hamburguer}g / R$${preco_hamburguer}) <br>
+                Quantidade de Hamburgueres: ${qtd} x <br> 
+                Queijo: ${queijo} <br>
+                Cebola: ${cebola} <br>
+                Alface: ${alface} <br>
+                Tomate: ${tomate} <br>
+                Preço Final do Lanche: R$${preco_final}
+            `;
+        }
+    }
+</script>
